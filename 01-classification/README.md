@@ -13,3 +13,12 @@ Run access classification
 ```shell
 python3 access_classification.py
 ```
+
+
+Run search classification
+
+Install pandas: `pip install pandas --upgrade`
+
+```shell
+python3 search_classification.py
+```
