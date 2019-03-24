@@ -8,8 +8,8 @@ Xdummies = pd.get_dummies(X_df)
 Ydummies = Y_df
 
 # a eficacia do algoritmo que chuta 0 ou 1
-acerto_de_um = sum(Y_df)
-acerto_de_zero = len(Y_df) - acerto_de_um
+acerto_de_um = len(Y[Y==1])
+acerto_de_zero = len(Y[Y==0])
 taxa_de_acerto_base = (100.0 * max(acerto_de_um, acerto_de_zero)) / len(Y_df)
 print(f"Taxa de acerto base {taxa_de_acerto_base}")
 
