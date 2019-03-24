@@ -13,6 +13,9 @@ acerto_de_zero = len(Y_df[Y_df==0])
 taxa_de_acerto_base = (100.0 * max(acerto_de_um, acerto_de_zero)) / len(Y_df)
 print(f"Taxa de acerto base {taxa_de_acerto_base}")
 
+print("elementos do Y do qual no índice do X é zero:")
+print(X_df[Y_df==0])
+
 X = Xdummies.values
 Y = Ydummies.values
 
