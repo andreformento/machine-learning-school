@@ -7,6 +7,12 @@ Y_df = df['comprou']
 Xdummies = pd.get_dummies(X_df)
 Ydummies = Y_df
 
+# a eficacia do algoritmo que chuta 0 ou 1
+acerto_de_um = sum(Y_df)
+acerto_de_zero = len(Y_df) - acerto_de_um
+taxa_de_acerto_base = (100.0 * max(acerto_de_um, acerto_de_zero)) / len(Y_df)
+print(f"Taxa de acerto base {taxa_de_acerto_base}")
+
 X = Xdummies.values
 Y = Ydummies.values
 
@@ -35,4 +41,3 @@ total_de_elementos = len(teste_dados)
 taxa_de_acertos = 100.0 * (total_de_acertos / total_de_elementos)
 
 print(f"Taxa de acertos = {taxa_de_acertos}")
-print(f"Total de elementos = {total_de_elementos}")
