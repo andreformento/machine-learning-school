@@ -31,7 +31,13 @@ marcacoes_teste = [-1, 1, -1]
 #  1 -1 =>  1 - -1 =  2
 
 
-diferenca = resultado - marcacoes_teste
-print("Diferença")
-print(diferenca)
+diferencas = resultado - marcacoes_teste
+print("Diferenças")
+print(diferencas)
 
+acertos = [d for d in diferencas if d == 0]
+print("Acertos")
+print(acertos)
+total_de_acertos = len(acertos)
+total_de_elementos = len(teste)
+print("Total de acertos ${total_de_acertos}; Total de elementos ${total_de_elementos}")
