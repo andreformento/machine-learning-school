@@ -1,7 +1,7 @@
 from collections import Counter
 import pandas as pd
 
-df = pd.read_csv('busca2.csv')
+df = pd.read_csv('busca.csv')
 
 X_df = df[['home', 'busca', 'logado']]
 Y_df = df['comprou']
@@ -26,23 +26,27 @@ treino_marcacoes = Y[:tamanho_de_treino]
 teste_dados = X[-tamanho_de_teste:]
 teste_marcacoes = Y[-tamanho_de_teste:]
 
+def fit_and_predict(name, modelo):
+    # treinar
+    modelo.fit(treino_dados, treino_marcacoes)
+
+    # prevendo
+    resultado = modelo.predict(teste_dados)
+
+    acertos = (resultado == teste_marcacoes)
+    total_de_acertos = sum(acertos)
+    total_de_elementos = len(teste_dados)
+    taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
+
+    print(f"Taxa de acerto calculado {name} = {taxa_de_acerto}")
+
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.ensemble import AdaBoostClassifier
 
-modelo = MultinomialNB()
-# treinar
-modelo.fit(treino_dados, treino_marcacoes)
-
-# prevendo
-resultado = modelo.predict(teste_dados)
-
-acertos = (resultado == teste_marcacoes)
-total_de_acertos = sum(acertos)
-total_de_elementos = len(teste_dados)
-taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
-
-print(f"Taxa de acerto = {taxa_de_acerto}")
+fit_and_predict("Naive bayes", MultinomialNB())
+fit_and_predict("AdaBoost", AdaBoostClassifier())
 
 # a eficacia do algoritmo que chuta tudo o mesmo valor
 maior_acerto = max(Counter(teste_marcacoes).values())
 taxa_de_acerto_base = 100.0 * maior_acerto / len(teste_marcacoes)
-print(f"Taxa de acerto base {taxa_de_acerto_base}")
+print(f"Taxa de acerto base = {taxa_de_acerto_base}")
